@@ -1,6 +1,6 @@
 // WhatsApp redirection function
 function redirectToWhatsApp(plan, price) {
-    const phoneNumber = '919876543210'; // Replace with your actual WhatsApp number
+    const phoneNumber = '+919202718909'; // Replace with your actual WhatsApp number
     const message = `Hi, I am interested in the ${plan} Plan (₹${price})`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;

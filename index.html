@@ -248,8 +248,8 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
         }
 
         /* Add spacing adjustment */
@@ -264,20 +264,21 @@
         }
 
         .modal-content {
-            background-color: #fff;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
             margin: 15% auto;
-            padding: 40px;  /* Increased padding */
-            border-radius: 15px;
+            padding: 40px;
+            border-radius: 20px;
             width: 90%;
             max-width: 500px;
             position: relative;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            animation: modalSlideIn 0.3s ease-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         @keyframes modalSlideIn {
             from {
-                transform: translateY(-100px);
+                transform: translateY(-50px);
                 opacity: 0;
             }
             to {
@@ -292,68 +293,129 @@
             top: 15px;
             font-size: 28px;
             font-weight: bold;
-            color: #666;
+            color: var(--primary-color);
             cursor: pointer;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .close-modal:hover {
-            color: #000;
+            background: rgba(0, 0, 0, 0.1);
+            transform: rotate(90deg);
         }
 
         .modal-content h2 {
-            color: #333;
+            color: var(--primary-color);
             margin-bottom: 20px;
             text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
         }
 
         .modal-content p {
-            color: #666;
+            color: var(--text-color);
             text-align: center;
             margin-bottom: 30px;
+            font-size: 1.1rem;
+            opacity: 0.8;
         }
 
         .contact-options {
             display: flex;
             flex-direction: column;
-            gap: 25px;  /* Increased gap between buttons */
+            gap: 25px;
             width: 100%;
-            margin: 20px 0;  /* Add margin top and bottom */
+            margin: 20px 0;
         }
 
         .contact-btn {
-            padding: 15px 25px;
+            padding: 18px 25px;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 12px;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            gap: 12px;
+            transition: all 0.3s ease;
             width: 100%;
-            margin: 0;  /* Reset any default margins */
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-btn:hover::before {
+            transform: translateX(100%);
         }
 
         .contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
         .whatsapp-btn {
-            background-color: #25D366;
-            color: white;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
         }
 
         .call-btn {
-            background-color: #007bff;
-            color: white;
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .call-btn:hover {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
         }
 
         .contact-btn i {
-            font-size: 20px;
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-btn:hover i {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 10% auto;
+                padding: 30px;
+            }
+
+            .modal-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .contact-btn {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
         }
     </style>
 
