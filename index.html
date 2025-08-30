@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReGrowth - Digital Presence Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <div class="logo-image-container">
+                <img src="assets/logo.png" alt="Regrowth Logo" class="logo-img">
+                <div class="logo-hologram">
+                    <img src="assets/logo.png" alt="Regrowth Logo" class="hologram-img">
+                    <div class="hologram-overlay"></div>
+                </div>
+            </div>
+            <a href="#home" class="logo-text">ReGrowth</a>
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link">Services</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="animate-text">Transform Your Business with a Digital Presence</h1>
+            <p class="animate-text-delay">In today's digital world, your website is your storefront. Let us help you make it count.</p>
+            <div class="cta-container">
+                <button class="cta-button" onclick="window.location.href='services.html'">Get Started</button>
+                <button class="cta-button" onclick="showContactOptions()">Contact Us</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="floating-shapes"></div>
+        </div>
+    </section>
+
+    <!-- Comparison Graphs Section -->
+    <section class="comparison-graphs">
+        <div class="graph-container">
+            <div class="graph-card negative">
+                <h3>Businesses without a website</h3>
+                <p class="graph-stats">-45% Revenue</p>
+                <div class="graph">
+                    <svg viewBox="0 0 200 100" class="falling-graph">
+                        <path class="graph-line" d="M0,20 L50,40 L100,60 L150,80 L200,90" />
+                        <circle class="graph-point" cx="0" cy="20" r="3" />
+                        <circle class="graph-point" cx="50" cy="40" r="3" />
+                        <circle class="graph-point" cx="100" cy="60" r="3" />
+                        <circle class="graph-point" cx="150" cy="80" r="3" />
+                        <circle class="graph-point" cx="200" cy="90" r="3" />
+                    </svg>
+                </div>
+            </div>
+            <div class="graph-card positive">
+                <h3>Businesses with a website</h3>
+                <p class="graph-stats">+85% Revenue</p>
+                <div class="graph">
+                    <svg viewBox="0 0 200 100" class="rising-graph">
+                        <path class="graph-line" d="M0,80 L50,60 L100,40 L150,20 L200,10" />
+                        <circle class="graph-point" cx="0" cy="80" r="3" />
+                        <circle class="graph-point" cx="50" cy="60" r="3" />
+                        <circle class="graph-point" cx="100" cy="40" r="3" />
+                        <circle class="graph-point" cx="150" cy="20" r="3" />
+                        <circle class="graph-point" cx="200" cy="10" r="3" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number" data-target="150">0</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="98">0</div>
+                <div class="stat-label">Client Satisfaction</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="5">0</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="24">0</div>
+                <div class="stat-label">Hours Support</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Showcase -->
+    <section class="features-showcase">
+        <h2>Why Choose Us</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>Custom Design</h3>
+                <p>Unique designs tailored to your brand identity</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Mobile First</h3>
+                <p>Perfect display on all devices and screen sizes</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Fast Performance</h3>
+                <p>Optimized for speed and better user experience</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>SEO Ready</h3>
+                <p>Built with search engine optimization in mind</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <h2>Our Process</h2>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Discovery</h3>
+                <p>Understanding your business needs and goals</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Design</h3>
+                <p>Creating a unique and engaging design</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Development</h3>
+                <p>Building your website with modern technologies</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Launch</h3>
+                <p>Going live and ensuring everything works perfectly</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="why-section">
+        <h2>
+            <span style="--i:1">W</span>
+            <span style="--i:2">h</span>
+            <span style="--i:3">y</span>
+            <span style="--i:4">&nbsp;</span>
+            <span style="--i:5">Y</span>
+            <span style="--i:6">o</span>
+            <span style="--i:7">u</span>
+            <span style="--i:8">r</span>
+            <span style="--i:9">&nbsp;</span>
+            <span style="--i:10">B</span>
+            <span style="--i:11">u</span>
+            <span style="--i:12">s</span>
+            <span style="--i:13">i</span>
+            <span style="--i:14">n</span>
+            <span style="--i:15">e</span>
+            <span style="--i:16">s</span>
+            <span style="--i:17">s</span>
+            <span style="--i:18">&nbsp;</span>
+            <span style="--i:19">N</span>
+            <span style="--i:20">e</span>
+            <span style="--i:21">e</span>
+            <span style="--i:22">d</span>
+            <span style="--i:23">s</span>
+            <span style="--i:24">&nbsp;</span>
+            <span style="--i:25">a</span>
+            <span style="--i:26">&nbsp;</span>
+            <span style="--i:27">W</span>
+            <span style="--i:28">e</span>
+            <span style="--i:29">b</span>
+            <span style="--i:30">s</span>
+            <span style="--i:31">i</span>
+            <span style="--i:32">t</span>
+            <span style="--i:33">e</span>
+        </h2>
+        <div class="reasons-grid">
+            <div class="reason-card">
+                <i class="fas fa-globe"></i>
+                <h3>24/7 Availability</h3>
+                <p>Your business is always open online, reaching customers at any time.</p>
+            </div>
+            <div class="reason-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Increased Visibility</h3>
+                <p>Be found by potential customers searching for your services.</p>
+            </div>
+            <div class="reason-card">
+                <i class="fas fa-users"></i>
+                <h3>Build Trust</h3>
+                <p>Professional websites establish credibility and trust with customers.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Regrowth. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Contact Us</h2>
+            <p>Choose your preferred way to reach us:</p>
+            <div class="contact-options">
+                <button class="contact-btn whatsapp-btn" onclick="window.open('https://wa.me/919202718909', '_blank')">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
+                </button>
+                <button class="contact-btn call-btn" onclick="window.location.href='tel:+919202718909'">
+                    <i class="fas fa-phone"></i>
+                    Call Us
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+        }
+
+        /* Add spacing adjustment */
+        .comparison-graphs {
+            margin-top: -50px;  /* Negative margin to reduce gap */
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            margin-bottom: 0;  /* Remove any bottom margin from hero section */
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+            margin: 15% auto;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .close-modal:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .modal-content h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .modal-content p {
+            color: var(--text-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .contact-btn {
+            padding: 18px 25px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .whatsapp-btn {
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+
+        .call-btn {
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .call-btn:hover {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        }
+
+        .contact-btn i {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-btn:hover i {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 10% auto;
+                padding: 30px;
+            }
+
+            .modal-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .contact-btn {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+
+    <script src="script.js"></script>
+    <script>
+        function showContactOptions() {
+            const modal = document.getElementById('contactModal');
+            modal.style.display = 'block';
+        }
+
+        // Close modal when clicking the X
+        document.querySelector('.close-modal').onclick = function() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html> 
