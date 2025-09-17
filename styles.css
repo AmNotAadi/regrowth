@@ -48,52 +48,15 @@
     text-shadow: 0 0 10px var(--primary-purple);
 }
 
-.nav-menu {
-    display: flex;
-    align-items: center;
-    gap: var(--space-8);
-}
+/* Removed conflicting nav-menu style */
 
-.nav-link {
-    font-weight: var(--font-medium);
-    color: var(--text-light);
-    transition: color var(--transition-fast);
-    position: relative;
-}
+/* Removed conflicting nav-link style */
 
-.nav-link:hover {
-    color: var(--accent-purple);
-    text-shadow: 0 0 8px var(--primary-purple);
-}
+/* Removed conflicting nav-link hover style */
 
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--gradient-primary);
-    transition: width var(--transition-normal);
-}
+/* Removed conflicting nav-link after styles */
 
-.nav-link:hover::after {
-    width: 100%;
-}
-
-.nav-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
-}
-
-.nav-toggle span {
-    width: 25px;
-    height: 3px;
-    background: var(--primary-purple);
-    transition: all var(--transition-normal);
-}
+/* Remove old conflicting styles */
 
 /* Hero Section */
 .hero {
