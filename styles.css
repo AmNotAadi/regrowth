@@ -718,21 +718,61 @@
 
 /* Rocket Animation */
 .mission-image .fa-rocket {
-    animation: rocketFloat 3s ease-in-out infinite;
+    animation: rocketFly 4s ease-in-out infinite;
+    position: relative;
 }
 
-@keyframes rocketFloat {
-    0%, 100% {
-        transform: translateY(0px) rotate(0deg);
+.mission-image .fa-rocket::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    width: 15px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ff6b35, #ff8c42);
+    border-radius: 2px;
+    transform: translateY(-50%);
+    animation: rocketTrail 4s ease-in-out infinite;
+}
+
+@keyframes rocketFly {
+    0% {
+        transform: translate(0px, 0px) rotate(0deg);
     }
     25% {
-        transform: translateY(-10px) rotate(-5deg);
+        transform: translate(15px, -20px) rotate(15deg);
     }
     50% {
-        transform: translateY(-15px) rotate(0deg);
+        transform: translate(30px, -40px) rotate(25deg);
     }
     75% {
-        transform: translateY(-10px) rotate(5deg);
+        transform: translate(20px, -25px) rotate(10deg);
+    }
+    100% {
+        transform: translate(0px, 0px) rotate(0deg);
+    }
+}
+
+@keyframes rocketTrail {
+    0% {
+        opacity: 0;
+        transform: translateY(-50%) scaleX(0);
+    }
+    25% {
+        opacity: 0.8;
+        transform: translateY(-50%) scaleX(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-50%) scaleX(1.2);
+    }
+    75% {
+        opacity: 0.6;
+        transform: translateY(-50%) scaleX(0.8);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50%) scaleX(0);
     }
 }
 
