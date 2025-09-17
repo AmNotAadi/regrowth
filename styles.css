@@ -365,43 +365,52 @@
     padding: var(--space-8);
     text-align: center;
     transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-.package-card.popular::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: var(--gradient-primary);
-    border-radius: var(--radius-xl);
-    z-index: -1;
+.package-features {
+    flex-grow: 1;
+    margin-bottom: var(--space-6);
 }
 
+.package-btn {
+    margin-top: auto;
+}
 
+/* Premium Package Card - Green Glowing Border Only */
+.package-card.popular {
+    border: 2px solid rgba(0, 230, 118, 0.8);
+    box-shadow: 
+        0 0 0 2px rgba(0, 230, 118, 0.8),
+        0 0 15px rgba(0, 230, 118, 0.6),
+        0 0 30px rgba(0, 230, 118, 0.4),
+        0 8px 24px rgba(0, 0, 0, 0.55);
+    position: relative;
+}
+
+/* Most Popular Pill Badge */
 .popular-badge {
     position: absolute;
-    top: -25px;
+    top: 8px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--cta-teal);
-    color: var(--white);
-    padding: var(--space-2) var(--space-6);
-    border-radius: var(--radius-full);
-    font-size: var(--text-sm);
-    font-weight: var(--font-semibold);
-    box-shadow: var(--shadow-md);
+    background: #00E676;
+    color: #FFFFFF;
+    font-family: 'Poppins', 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    box-shadow: 0 0 18px rgba(0, 230, 118, 0.30), 0 6px 14px rgba(0, 0, 0, 0.32);
     z-index: 10;
     white-space: nowrap;
+    text-transform: none;
 }
 
-.package-card.popular {
-    margin-top: var(--space-12);
-    position: relative;
-    border: 3px solid var(--cta-teal);
-    border-radius: var(--radius-xl);
-}
+
+
 
 .package-header h3 {
     font-size: var(--text-2xl);
@@ -923,37 +932,8 @@
     min-width: 200px;
 }
 
-.package-card.popular {
-    background: linear-gradient(135deg, var(--primary-purple) 0%, var(--secondary-indigo) 100%);
-    color: var(--white);
-    transform: scale(1.05);
-    border: 2px solid var(--primary-purple);
-}
 
-.package-card.popular .package-price .amount {
-    color: var(--white) !important;
-    font-weight: var(--font-bold);
-}
 
-.package-card.popular .package-price .currency {
-    color: var(--white) !important;
-}
-
-.package-card.popular .package-description {
-    color: rgba(255, 255, 255, 0.9) !important;
-}
-
-.package-card.popular h3 {
-    color: var(--white) !important;
-}
-
-.package-card.popular .package-features li {
-    color: var(--white) !important;
-}
-
-.package-card.popular .package-features i {
-    color: var(--cta-teal) !important;
-}
 
 .package-header {
     padding: var(--space-4);
@@ -987,28 +967,6 @@
 }
 
 
-.popular-badge {
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--cta-teal);
-    color: var(--white);
-    padding: var(--space-2) var(--space-6);
-    border-radius: var(--radius-full);
-    font-size: var(--text-sm);
-    font-weight: var(--font-semibold);
-    box-shadow: var(--shadow-md);
-    z-index: 10;
-    white-space: nowrap;
-}
-
-.package-card.popular {
-    margin-top: var(--space-12);
-    position: relative;
-    border: 3px solid var(--cta-teal);
-    border-radius: var(--radius-xl);
-}
 
 .feature-name {
     text-align: left;
@@ -1291,9 +1249,6 @@
         gap: var(--space-4);
     }
     
-    .package-card.popular {
-        transform: scale(1);
-    }
 }
 
 /* Portfolio Page Styles */
