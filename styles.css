@@ -382,7 +382,7 @@
 
 .popular-badge {
     position: absolute;
-    top: -20px;
+    top: -25px;
     left: 50%;
     transform: translateX(-50%);
     background: var(--cta-teal);
@@ -397,8 +397,10 @@
 }
 
 .package-card.popular {
-    margin-top: var(--space-8);
+    margin-top: var(--space-12);
     position: relative;
+    border: 3px solid var(--cta-teal);
+    border-radius: var(--radius-xl);
 }
 
 .package-header h3 {
@@ -987,7 +989,7 @@
 
 .popular-badge {
     position: absolute;
-    top: -20px;
+    top: -25px;
     left: 50%;
     transform: translateX(-50%);
     background: var(--cta-teal);
@@ -1002,8 +1004,10 @@
 }
 
 .package-card.popular {
-    margin-top: var(--space-8);
+    margin-top: var(--space-12);
     position: relative;
+    border: 3px solid var(--cta-teal);
+    border-radius: var(--radius-xl);
 }
 
 .feature-name {
