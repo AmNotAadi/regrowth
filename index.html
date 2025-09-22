@@ -67,6 +67,7 @@
             <div class="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#packages" class="nav-link">Packages</a>
+                <a href="revamp.html" class="nav-link">Revamp</a>
                 <a href="#portfolio" class="nav-link">Portfolio</a>
                 <a href="about.html" class="nav-link">About</a>
                 <a href="contact.html" class="nav-link">Contact</a>
@@ -183,109 +184,16 @@
         </div>
     </section>
 
-    <!-- Packages & Pricing Section -->
-    <section id="packages" class="packages-section py-20">
-        <div class="container">
-            <div class="section-header text-center mb-16">
-                <h2 class="section-title">Choose Your Perfect Package</h2>
-                <p class="section-subtitle">Professional websites tailored to your business needs</p>
-            </div>
-            <div class="packages-grid grid grid-cols-4">
-                <div class="package-card card">
-                    <div class="package-header">
-                        <h3>Starter</h3>
-                        <div class="package-price">
-                            <span class="currency">₹</span>
-                            <span class="amount">800</span>
-                        </div>
-                        <p class="package-description">Perfect for small businesses getting started online</p>
-                    </div>
-                    <ul class="package-features">
-                        <li><i class="fas fa-check"></i> Single Page Website</li>
-                        <li><i class="fas fa-check"></i> Mobile Responsive</li>
-                        <li><i class="fas fa-check"></i> Basic Contact Form</li>
-                        <li><i class="fas fa-check"></i> Simple Design</li>
-                    </ul>
-                    <button class="btn btn-primary btn-lg package-btn" onclick="redirectToWhatsApp('Starter', '800')">
-                        Choose Package
-                    </button>
-                </div>
-                
-                <div class="package-card card">
-                    <div class="package-header">
-                        <h3>Basic</h3>
-                        <div class="package-price">
-                            <span class="currency">₹</span>
-                            <span class="amount">1,500</span>
-                        </div>
-                        <p class="package-description">Ideal for growing businesses with multiple pages</p>
-                    </div>
-                    <ul class="package-features">
-                        <li><i class="fas fa-check"></i> 5 Pages Website</li>
-                        <li><i class="fas fa-check"></i> Mobile Responsive</li>
-                        <li><i class="fas fa-check"></i> Contact Form</li>
-                        <li><i class="fas fa-check"></i> Basic SEO</li>
-                    </ul>
-                    <button class="btn btn-primary btn-lg package-btn" onclick="redirectToWhatsApp('Basic', '1500')">
-                        Choose Package
-                    </button>
-                </div>
-                
-                <div class="package-card card popular">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="package-header">
-                        <h3>Premium</h3>
-                        <div class="package-price">
-                            <span class="currency">₹</span>
-                            <span class="amount">2,500</span>
-                        </div>
-                        <p class="package-description">Complete solution for established businesses</p>
-                    </div>
-                    <ul class="package-features">
-                        <li><i class="fas fa-check"></i> 10 Pages Website</li>
-                        <li><i class="fas fa-check"></i> Mobile Responsive</li>
-                        <li><i class="fas fa-check"></i> Advanced Contact Forms</li>
-                        <li><i class="fas fa-check"></i> Advanced SEO</li>
-                        <li><i class="fas fa-check"></i> Custom Domain</li>
-                    </ul>
-                    <button class="btn btn-teal btn-lg package-btn" onclick="redirectToWhatsApp('Premium', '2500')">
-                        Choose Package
-                    </button>
-                </div>
-                
-                <div class="package-card card">
-                    <div class="package-header">
-                        <h3>Professional</h3>
-                        <div class="package-price">
-                            <span class="currency">₹</span>
-                            <span class="amount">4,000</span>
-                        </div>
-                        <p class="package-description">Enterprise-level solution with advanced features</p>
-                    </div>
-                    <ul class="package-features">
-                        <li><i class="fas fa-check"></i> Unlimited Pages</li>
-                        <li><i class="fas fa-check"></i> Mobile Responsive</li>
-                        <li><i class="fas fa-check"></i> Custom Features</li>
-                        <li><i class="fas fa-check"></i> Advanced SEO</li>
-                        <li><i class="fas fa-check"></i> E-commerce Integration</li>
-                        <li><i class="fas fa-check"></i> Custom Domain</li>
-                    </ul>
-                    <button class="btn btn-primary btn-lg package-btn" onclick="redirectToWhatsApp('Professional', '4000')">
-                        Choose Package
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- Demo Sites Showcase -->
     <section id="portfolio" class="demo-showcase py-20">
-        <div class="container">
+        <div class="container text-center">
             <div class="section-header text-center mb-16">
                 <h2 class="section-title">See Our Work in Action</h2>
                 <p class="section-subtitle">Professional websites that drive results for our clients</p>
             </div>
-            <div class="demo-grid grid grid-cols-3">
+            <div class="demo-grid grid grid-cols-3" style="justify-content:center;">
                 <div class="demo-card card">
                     <div class="demo-mockup">
                         <div class="mockup-frame">
@@ -420,9 +328,12 @@
                 <h2 class="section-title">What Our Clients Say</h2>
                 <p class="section-subtitle">Real feedback from satisfied customers</p>
             </div>
-            <div class="testimonials-grid grid grid-cols-3">
-                <div class="testimonial-card card">
+            <div class="testimonials-grid grid grid-cols-3" style="justify-content:center; justify-items:center; text-align:center; gap:2rem;">
+                <div class="testimonial-card card" style="max-width:380px; width:100%; margin:0 auto; padding:24px; border-radius:16px; box-shadow:0 10px 24px rgba(0,0,0,0.08); border:1px solid rgba(255,255,255,0.08);">
                     <div class="testimonial-content">
+                        <div class="quote-icon" style="font-size:28px; color:var(--teal-500); margin-bottom:12px;">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
                         <div class="stars">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -432,19 +343,22 @@
                         </div>
                         <p>"Regrowth transformed our online presence completely. Our website looks professional and brings in more customers every day. Highly recommended!"</p>
                     </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <i class="fas fa-user"></i>
+                    <div class="testimonial-author" style="display:flex; align-items:center; justify-content:center; gap:12px; margin-top:12px;">
+                        <div class="author-avatar" style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, var(--teal-500), var(--teal-400)); display:flex; align-items:center; justify-content:center; color:#fff;">
+                            <span style="font-weight:700;">RK</span>
                         </div>
                         <div class="author-info">
-                            <h4>Rajesh Kumar</h4>
-                            <span>Restaurant Owner</span>
+                            <h4 style="margin:0;">Rajesh Kumar</h4>
+                            <span style="opacity:0.8;">Restaurant Owner</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="testimonial-card card">
+                <div class="testimonial-card card" style="max-width:380px; width:100%; margin:0 auto; padding:24px; border-radius:16px; box-shadow:0 10px 24px rgba(0,0,0,0.08); border:1px solid rgba(255,255,255,0.08);">
                     <div class="testimonial-content">
+                        <div class="quote-icon" style="font-size:28px; color:var(--teal-500); margin-bottom:12px;">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
                         <div class="stars">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -454,19 +368,22 @@
                         </div>
                         <p>"Excellent service and affordable pricing. Our clinic website is now ranking on Google and patients can easily book appointments online."</p>
                     </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <i class="fas fa-user"></i>
+                    <div class="testimonial-author" style="display:flex; align-items:center; justify-content:center; gap:12px; margin-top:12px;">
+                        <div class="author-avatar" style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, var(--teal-500), var(--teal-400)); display:flex; align-items:center; justify-content:center; color:#fff;">
+                            <span style="font-weight:700;">PS</span>
                         </div>
                         <div class="author-info">
-                            <h4>Dr. Priya Sharma</h4>
-                            <span>Medical Practitioner</span>
+                            <h4 style="margin:0;">Dr. Priya Sharma</h4>
+                            <span style="opacity:0.8;">Medical Practitioner</span>
                         </div>
                     </div>
                 </div>
                 
-                <div class="testimonial-card card">
+                <div class="testimonial-card card" style="max-width:380px; width:100%; margin:0 auto; padding:24px; border-radius:16px; box-shadow:0 10px 24px rgba(0,0,0,0.08); border:1px solid rgba(255,255,255,0.08);">
                     <div class="testimonial-content">
+                        <div class="quote-icon" style="font-size:28px; color:var(--teal-500); margin-bottom:12px;">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
                         <div class="stars">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -476,13 +393,13 @@
                         </div>
                         <p>"Fast delivery, great design, and amazing support. Our fitness studio website has helped us attract more members and streamline our operations."</p>
                     </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <i class="fas fa-user"></i>
+                    <div class="testimonial-author" style="display:flex; align-items:center; justify-content:center; gap:12px; margin-top:12px;">
+                        <div class="author-avatar" style="width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg, var(--teal-500), var(--teal-400)); display:flex; align-items:center; justify-content:center; color:#fff;">
+                            <span style="font-weight:700;">AS</span>
                         </div>
                         <div class="author-info">
-                            <h4>Amit Singh</h4>
-                            <span>Fitness Studio Owner</span>
+                            <h4 style="margin:0;">Amit Singh</h4>
+                            <span style="opacity:0.8;">Fitness Studio Owner</span>
                         </div>
                     </div>
                 </div>
