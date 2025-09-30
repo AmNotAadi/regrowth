@@ -15,6 +15,7 @@
         const elements = document.querySelectorAll('.stack-on-scroll');
         elements.forEach(el => {
             el.style.transform = 'none';
+            el.style.opacity = '1';
             el.style.zIndex = 'auto';
         });
         return;
