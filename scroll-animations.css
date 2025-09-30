@@ -1,70 +1,90 @@
-/* Scroll-triggered animations using IntersectionObserver */
+/* Scroll-stacking animations using IntersectionObserver */
 
-/* Base animation classes */
-.fade-on-scroll {
-    opacity: 0;
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+/* Base stacking animation classes */
+.stack-on-scroll {
+    position: relative;
+    z-index: 1;
+    transform: translateY(100vh);
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.fade-on-scroll.fade-in {
-    opacity: 1;
-}
-
-/* Slide up animation for most elements */
-.fade-on-scroll {
-    transform: translateY(30px);
-}
-
-.fade-on-scroll.fade-in {
+.stack-on-scroll.stack-in {
     transform: translateY(0);
+    z-index: 10;
 }
 
-/* Fade only for headings (no slide) */
-.fade-on-scroll.heading-only {
-    transform: none;
+/* Different stacking layers for depth effect */
+.stack-on-scroll.layer-1 {
+    z-index: 1;
 }
 
-/* Delay classes for staggered animations */
-.fade-on-scroll.delay-1 {
+.stack-on-scroll.layer-2 {
+    z-index: 2;
+}
+
+.stack-on-scroll.layer-3 {
+    z-index: 3;
+}
+
+.stack-on-scroll.layer-4 {
+    z-index: 4;
+}
+
+.stack-on-scroll.layer-5 {
+    z-index: 5;
+}
+
+.stack-on-scroll.layer-6 {
+    z-index: 6;
+}
+
+/* Delay classes for staggered stacking */
+.stack-on-scroll.delay-1 {
     transition-delay: 0.1s;
 }
 
-.fade-on-scroll.delay-2 {
+.stack-on-scroll.delay-2 {
     transition-delay: 0.2s;
 }
 
-.fade-on-scroll.delay-3 {
+.stack-on-scroll.delay-3 {
     transition-delay: 0.3s;
 }
 
-.fade-on-scroll.delay-4 {
+.stack-on-scroll.delay-4 {
     transition-delay: 0.4s;
 }
 
-.fade-on-scroll.delay-5 {
+.stack-on-scroll.delay-5 {
     transition-delay: 0.5s;
 }
 
-.fade-on-scroll.delay-6 {
+.stack-on-scroll.delay-6 {
     transition-delay: 0.6s;
+}
+
+/* Ensure sections have proper stacking context */
+.stack-on-scroll {
+    background: inherit;
+    will-change: transform;
 }
 
 /* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
-    .fade-on-scroll {
-        opacity: 1;
+    .stack-on-scroll {
         transform: none;
         transition: none;
+        z-index: auto;
     }
     
-    .fade-on-scroll.fade-in {
-        opacity: 1;
+    .stack-on-scroll.stack-in {
         transform: none;
+        z-index: auto;
     }
 }
 
 /* Ensure elements are visible when JavaScript is disabled */
-.no-js .fade-on-scroll {
-    opacity: 1;
+.no-js .stack-on-scroll {
     transform: none;
+    z-index: auto;
 }
