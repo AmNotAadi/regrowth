@@ -24,6 +24,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="design-system.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="scroll-animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- JSON-LD Schema -->
@@ -70,9 +71,9 @@
     <section class="portfolio-hero py-20">
         <div class="container">
             <div class="hero-content text-center">
-                <h1 class="hero-title">Our Portfolio</h1>
-                <p class="hero-subtitle">Discover how we've transformed businesses with professional, modern websites that drive results</p>
-                <div class="portfolio-stats">
+                <h1 class="hero-title fade-on-scroll heading-only">Our Portfolio</h1>
+                <p class="hero-subtitle fade-on-scroll">Discover how we've transformed businesses with professional, modern websites that drive results</p>
+                <div class="portfolio-stats fade-on-scroll">
                     <div class="stat">
                         <span class="stat-number">150+</span>
                         <span class="stat-label">Projects Completed</span>
@@ -93,7 +94,7 @@
     <!-- Portfolio Filter -->
     <section class="portfolio-filter py-8">
         <div class="container">
-            <div class="filter-buttons text-center">
+            <div class="filter-buttons text-center fade-on-scroll">
                 <button class="filter-btn active" data-filter="all">All Projects</button>
                 <button class="filter-btn" data-filter="restaurant">Restaurants</button>
                 <button class="filter-btn" data-filter="healthcare">Healthcare</button>
@@ -109,7 +110,7 @@
         <div class="container">
             <div class="portfolio-grid">
                 <!-- Restaurant Project 1 -->
-                <div class="portfolio-item card" data-category="restaurant">
+                <div class="portfolio-item card fade-on-scroll" data-category="restaurant">
                     <div class="portfolio-image">
                         <div class="mockup-container">
                             <div class="mockup-frame">
@@ -150,7 +151,7 @@
                 </div>
 
                 <!-- Healthcare Project -->
-                <div class="portfolio-item card" data-category="healthcare">
+                <div class="portfolio-item card fade-on-scroll delay-1" data-category="healthcare">
                     <div class="portfolio-image">
                         <div class="mockup-container">
                             <div class="mockup-frame">
@@ -191,7 +192,7 @@
                 </div>
 
                 <!-- Fitness Project -->
-                <div class="portfolio-item card" data-category="fitness">
+                <div class="portfolio-item card fade-on-scroll delay-2" data-category="fitness">
                     <div class="portfolio-image">
                         <div class="mockup-container">
                             <div class="mockup-frame">
@@ -232,7 +233,7 @@
                 </div>
 
                 <!-- E-commerce Project -->
-                <div class="portfolio-item card" data-category="ecommerce">
+                <div class="portfolio-item card fade-on-scroll delay-3" data-category="ecommerce">
                     <div class="portfolio-image">
                         <div class="mockup-container">
                             <div class="mockup-frame">
@@ -273,7 +274,7 @@
                 </div>
 
                 <!-- Corporate Project -->
-                <div class="portfolio-item card" data-category="corporate">
+                <div class="portfolio-item card fade-on-scroll delay-4" data-category="corporate">
                     <div class="portfolio-image">
                         <div class="mockup-container">
                             <div class="mockup-frame">
@@ -314,7 +315,7 @@
                 </div>
 
                 <!-- Restaurant Project 2 -->
-                <div class="portfolio-item card" data-category="restaurant">
+                <div class="portfolio-item card fade-on-scroll delay-5" data-category="restaurant">
                     <div class="portfolio-image">
                         <div class="mockup-container">
                             <div class="mockup-frame">
@@ -361,11 +362,11 @@
     <section class="client-testimonials py-20">
         <div class="container">
             <div class="section-header text-center mb-16">
-                <h2 class="section-title">What Our Clients Say</h2>
-                <p class="section-subtitle">Real feedback from businesses we've helped transform</p>
+                <h2 class="section-title fade-on-scroll heading-only">What Our Clients Say</h2>
+                <p class="section-subtitle fade-on-scroll">Real feedback from businesses we've helped transform</p>
             </div>
             <div class="testimonials-slider">
-                <div class="testimonial-slide">
+                <div class="testimonial-slide fade-on-scroll">
                     <div class="testimonial-content">
                         <div class="stars">
                             <i class="fas fa-star"></i>
@@ -386,7 +387,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-slide">
+                <div class="testimonial-slide fade-on-scroll delay-1">
                     <div class="testimonial-content">
                         <div class="stars">
                             <i class="fas fa-star"></i>
@@ -407,7 +408,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-slide">
+                <div class="testimonial-slide fade-on-scroll delay-2">
                     <div class="testimonial-content">
                         <div class="stars">
                             <i class="fas fa-star"></i>
@@ -436,9 +437,9 @@
     <section class="portfolio-cta py-20">
         <div class="container">
             <div class="cta-content text-center">
-                <h2 class="cta-title">Ready to Join Our Success Stories?</h2>
-                <p class="cta-subtitle">Let's create a website that transforms your business and drives real results</p>
-                <div class="cta-buttons">
+                <h2 class="cta-title fade-on-scroll heading-only">Ready to Join Our Success Stories?</h2>
+                <p class="cta-subtitle fade-on-scroll">Let's create a website that transforms your business and drives real results</p>
+                <div class="cta-buttons fade-on-scroll">
                     <a href="services.html" class="btn btn-teal btn-xl">
                         <i class="fas fa-rocket"></i>
                         Get Started Today
@@ -550,6 +551,7 @@
 
     <!-- Scripts -->
     <script src="script.js"></script>
+    <script src="scroll-animations.js"></script>
     <script>
         // Portfolio Filter Functionality
         document.addEventListener('DOMContentLoaded', function() {
