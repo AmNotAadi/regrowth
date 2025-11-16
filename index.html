@@ -9,32 +9,44 @@
     <meta name="description" content="Transform your business with professional web design. Affordable packages starting at ₹999." />
     
     <style>
-      /* Force disable dark mode filters - MOBILE ONLY */
+      /* Mobile styling - consistent dark theme regardless of device setting */
       @media (max-width: 768px) {
         :root {
-          color-scheme: light only !important;
+          color-scheme: dark !important;
         }
         
         html, body {
-          color-scheme: light only !important;
-          background-color: #ffffff !important;
+          background-color: #000000 !important;
+          color: #ffffff !important;
           filter: none !important;
         }
         
-        /* Force full opacity on all text elements */
+        /* Force dark background and light text on all elements */
         * {
-          color-scheme: light only !important;
-          -webkit-text-fill-color: initial !important;
+          color-scheme: dark !important;
         }
         
-        /* Disable any dark mode media queries on mobile */
-        @media (prefers-color-scheme: dark) {
-          :root, html, body, * {
-            color-scheme: light only !important;
-            background-color: inherit !important;
-            color: inherit !important;
-            filter: none !important;
-          }
+        /* Override any light backgrounds */
+        section, div, header, nav, main, footer {
+          background-color: #000000 !important;
+        }
+        
+        /* Make all text white/light colored */
+        h1, h2, h3, h4, h5, h6, p, span, a, li, label {
+          color: #ffffff !important;
+          -webkit-text-fill-color: #ffffff !important;
+        }
+        
+        /* Purple glowy accents */
+        button, .btn, a[href*="mailto"], a[href*="tel"] {
+          background: linear-gradient(135deg, #8b5cf6, #a78bfa) !important;
+          color: #ffffff !important;
+          box-shadow: 0 0 20px rgba(139, 92, 246, 0.5) !important;
+        }
+        
+        /* Ensure cards/sections maintain dark theme */
+        [class*="card"], [class*="section"], [class*="container"] {
+          background-color: #000000 !important;
         }
       }
     </style>
@@ -157,65 +169,39 @@
       function updatePricingInDOM(pricing) {
         log('Updating prices in DOM with:', pricing);
         
-        // Update all text nodes
-        const walker = document.createTreeWalker(
-          document.body,
-          NodeFilter.SHOW_TEXT,
-          null,
-          false
-        );
-        
-        const nodesToUpdate = [];
+        // Find all elements containing price text by looking at innerHTML
+        const allElements = document.querySelectorAll('*');
         let updateCount = 0;
         
-        while (walker.nextNode()) {
-          const node = walker.currentNode;
-          if (node.nodeValue && (node.nodeValue.includes('₹') || node.nodeValue.includes('$'))) {
-            nodesToUpdate.push(node);
-            if (DEBUG) log('Found text node with price:', node.nodeValue.trim());
-          }
-        }
+        const priceReplacements = [
+          { from: ['₹999', '₹ 999', '$79', '$ 79'], to: pricing.symbol + pricing.prices[0].toLocaleString() },
+          { from: ['₹1,499', '₹1499', '₹ 1,499', '$109', '$ 109'], to: pricing.symbol + pricing.prices[1].toLocaleString() },
+          { from: ['₹1,999', '₹1999', '₹ 1,999', '$139', '$ 139'], to: pricing.symbol + pricing.prices[2].toLocaleString() },
+          { from: ['₹2,999', '₹2999', '₹ 2,999', '$199', '$ 199'], to: pricing.symbol + pricing.prices[3].toLocaleString() }
+        ];
         
-        log('Found', nodesToUpdate.length, 'text nodes with currency symbols');
-        
-        // Define all possible price patterns to match
-        const priceMap = {
-          '999': pricing.symbol + pricing.prices[0].toLocaleString(),
-          '1499': pricing.symbol + pricing.prices[1].toLocaleString(),
-          '1,499': pricing.symbol + pricing.prices[1].toLocaleString(),
-          '1999': pricing.symbol + pricing.prices[2].toLocaleString(),
-          '1,999': pricing.symbol + pricing.prices[2].toLocaleString(),
-          '2999': pricing.symbol + pricing.prices[3].toLocaleString(),
-          '2,999': pricing.symbol + pricing.prices[3].toLocaleString(),
-          '79': pricing.symbol + pricing.prices[0].toLocaleString(),
-          '109': pricing.symbol + pricing.prices[1].toLocaleString(),
-          '139': pricing.symbol + pricing.prices[2].toLocaleString(),
-          '199': pricing.symbol + pricing.prices[3].toLocaleString()
-        };
-        
-        nodesToUpdate.forEach(node => {
-          let text = node.nodeValue;
-          let originalText = text;
+        allElements.forEach(element => {
+          // Skip if element has no text or is a script/style tag
+          if (!element.textContent || element.tagName === 'SCRIPT' || element.tagName === 'STYLE') return;
           
-          // Try to match and replace any currency + number pattern
-          Object.keys(priceMap).forEach(price => {
-            // Match ₹999, ₹ 999, $79, $ 79, etc.
-            const patterns = [
-              new RegExp('₹\\s*' + price, 'g'),
-              new RegExp('\\$\\s*' + price, 'g')
-            ];
+          // Only process leaf elements (elements with no child elements, only text)
+          if (element.children.length === 0 && (element.textContent.includes('₹') || element.textContent.includes('$'))) {
+            let originalText = element.textContent;
+            let newText = originalText;
             
-            patterns.forEach(pattern => {
-              if (pattern.test(text)) {
-                text = text.replace(pattern, priceMap[price]);
-                if (DEBUG) log('Replaced:', originalText.trim(), '→', text.trim());
-              }
+            priceReplacements.forEach(replacement => {
+              replacement.from.forEach(oldPrice => {
+                if (newText.includes(oldPrice)) {
+                  newText = newText.replace(new RegExp(oldPrice.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), replacement.to);
+                  if (DEBUG) log('Replacing in element:', oldPrice, '→', replacement.to);
+                }
+              });
             });
-          });
-          
-          if (text !== originalText) {
-            node.nodeValue = text;
-            updateCount++;
+            
+            if (newText !== originalText) {
+              element.textContent = newText;
+              updateCount++;
+            }
           }
         });
         
