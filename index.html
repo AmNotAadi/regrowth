@@ -27,6 +27,68 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script type="module" crossorigin src="/assets/index-ClTXjFut.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-Gkp1scXd.css">
+
+    <style>
+      /* Mobile dark theme overrides to keep design consistent */
+      @media (max-width: 768px) {
+        :root,
+        html,
+        body {
+          color-scheme: dark !important;
+          background-color: #050505 !important;
+        }
+
+        body,
+        .mobile-app,
+        .mobile-hero,
+        .mobile-services,
+        .mobile-portfolio,
+        .mobile-pricing,
+        .mobile-pricing-immersive,
+        .pricing-section,
+        .mobile-revamp,
+        .mobile-contact,
+        .mobile-footer {
+          background-color: #050505 !important;
+          color: #ffffff !important;
+        }
+
+        .mobile-hero-title,
+        .mobile-section-title,
+        .portfolio-immersive-title,
+        .portfolio-immersive-description,
+        .revamp-tile *,
+        .contact-tile *,
+        .pricing-title,
+        .pricing-title-immersive,
+        .pricing-price .currency,
+        .pricing-price .amount,
+        .pricing-price-immersive .amount-large,
+        .contact-content h3,
+        .contact-content p,
+        .mobile-contact-card,
+        .mobile-contact-card p,
+        .mobile-pricing-card,
+        .mobile-pricing-card .pricing-price .amount,
+        .mobile-pricing-card .pricing-price .currency,
+        .mobile-pricing-card-premium .currency-premium,
+        .mobile-pricing-card-premium .amount-premium {
+          color: #ffffff !important;
+          -webkit-text-fill-color: #ffffff !important;
+        }
+
+        .mobile-pricing-card,
+        .mobile-pricing-card-premium,
+        .pricing-card-immersive,
+        .mobile-contact-card,
+        .contact-tile,
+        .revamp-tile,
+        .pricing-tile {
+          background: rgba(12, 12, 18, 0.92) !important;
+          border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+      }
+    </style>
     
     <!-- Dynamic Pricing Script -->
     <script>
@@ -135,44 +197,101 @@
       
       function updatePricingInDOM(pricing) {
         log('Updating prices in DOM with:', pricing);
-        
-        // Find all elements that might contain pricing
-        const allElements = document.querySelectorAll('*');
-        let updateCount = 0;
-        
+
+        const BASE_PRICE_INDEX = {
+          999: 0,
+          1499: 1,
+          1999: 2,
+          2999: 3,
+          79: 0,
+          109: 1,
+          139: 2,
+          199: 3
+        };
+
+        const formatPrice = (value) => pricing.prices[value].toLocaleString();
+
+        // Update currency spans with the detected symbol
+        const currencySelectors = [
+          '.currency',
+          '.currency-premium',
+          '.pricing-price .currency',
+          '.pricing-price-immersive .currency',
+          '.pricing-price-premium .currency-premium'
+        ].join(', ');
+
+        document.querySelectorAll(currencySelectors).forEach(node => {
+          if (node && node.textContent !== pricing.symbol) {
+            node.textContent = pricing.symbol;
+          }
+        });
+
+        // Update amount spans (desktop + mobile + immersive)
+        const amountSelectors = [
+          '.amount',
+          '.amount-premium',
+          '.amount-large',
+          '.pricing-price .amount',
+          '.pricing-price .amount-premium',
+          '.pricing-price-immersive .amount-large',
+          '.pricing-price-premium .amount-premium'
+        ].join(', ');
+
+        let structuredUpdates = 0;
+
+        document.querySelectorAll(amountSelectors).forEach(node => {
+          if (!node) return;
+
+          const storedBase = node.dataset.basePrice;
+          let baseValue = storedBase ? parseInt(storedBase, 10) : parseInt((node.textContent || '').replace(/[^0-9]/g, ''), 10);
+
+          if (!storedBase && !Number.isNaN(baseValue)) {
+            node.dataset.basePrice = baseValue;
+          }
+
+          if (Number.isNaN(baseValue)) return;
+          const priceIndex = BASE_PRICE_INDEX[baseValue];
+          if (priceIndex === undefined) return;
+
+          const formatted = formatPrice(priceIndex);
+          if (node.textContent !== formatted) {
+            node.textContent = formatted;
+            structuredUpdates++;
+          }
+        });
+
+        // Fallback replacements for any stray text nodes (e.g., hero badges)
         const priceReplacements = [
           { from: ['₹999', '₹ 999', '$79', '$ 79'], to: pricing.symbol + pricing.prices[0].toLocaleString() },
           { from: ['₹1,499', '₹1499', '₹ 1,499', '$109', '$ 109'], to: pricing.symbol + pricing.prices[1].toLocaleString() },
           { from: ['₹1,999', '₹1999', '₹ 1,999', '$139', '$ 139'], to: pricing.symbol + pricing.prices[2].toLocaleString() },
           { from: ['₹2,999', '₹2999', '₹ 2,999', '$199', '$ 199'], to: pricing.symbol + pricing.prices[3].toLocaleString() }
         ];
-        
-        allElements.forEach(element => {
-          // Skip if element has no innerHTML or is a script/style tag
-          if (!element.innerHTML || element.tagName === 'SCRIPT' || element.tagName === 'STYLE' || element.tagName === 'SVG') return;
-          
-          // Check if element's innerHTML contains price symbols
-          if (element.innerHTML.includes('₹') || element.innerHTML.includes('$')) {
-            let originalHTML = element.innerHTML;
-            let newHTML = originalHTML;
-            
-            priceReplacements.forEach(replacement => {
-              replacement.from.forEach(oldPrice => {
-                if (newHTML.includes(oldPrice)) {
-                  newHTML = newHTML.replace(new RegExp(oldPrice.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), replacement.to);
-                  if (DEBUG) log('Replacing:', oldPrice, '→', replacement.to, 'in element:', element.tagName);
-                }
-              });
+
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+        let fallbackUpdates = 0;
+
+        while (walker.nextNode()) {
+          const node = walker.currentNode;
+          if (!node || !node.nodeValue) continue;
+          if (!node.nodeValue.includes('₹') && !node.nodeValue.includes('$')) continue;
+
+          let updatedValue = node.nodeValue;
+          priceReplacements.forEach(replacement => {
+            replacement.from.forEach(oldPrice => {
+              if (updatedValue.includes(oldPrice)) {
+                updatedValue = updatedValue.replace(new RegExp(oldPrice.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), replacement.to);
+              }
             });
-            
-            if (newHTML !== originalHTML) {
-              element.innerHTML = newHTML;
-              updateCount++;
-            }
+          });
+
+          if (updatedValue !== node.nodeValue) {
+            node.nodeValue = updatedValue;
+            fallbackUpdates++;
           }
-        });
-        
-        log('Updated', updateCount, 'price elements');
+        }
+
+        log('Updated', structuredUpdates, 'structured price nodes and', fallbackUpdates, 'fallback text nodes');
       }
       
       async function getExchangeRate(targetCurrency) {
