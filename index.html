@@ -9,19 +9,11 @@
     <meta name="description" content="Transform your business with professional web design. Affordable packages starting at ₹999." />
     
     <style>
-      /* Mobile styling - consistent appearance regardless of device setting */
+      /* Mobile - disable system dark mode filters only */
       @media (max-width: 768px) {
-        :root {
-          color-scheme: dark !important;
-        }
-        
         html, body {
           filter: none !important;
-        }
-        
-        /* Force proper color scheme */
-        * {
-          color-scheme: dark !important;
+          -webkit-filter: none !important;
         }
       }
     </style>
