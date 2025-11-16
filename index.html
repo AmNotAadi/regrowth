@@ -143,9 +143,10 @@
           }
           
           // Update pricing in DOM after delays to ensure React has rendered
-          setTimeout(() => updatePricingInDOM(pricing), 1000);
           setTimeout(() => updatePricingInDOM(pricing), 2000);
           setTimeout(() => updatePricingInDOM(pricing), 3000);
+          setTimeout(() => updatePricingInDOM(pricing), 4000);
+          setTimeout(() => updatePricingInDOM(pricing), 5000);
         } catch (error) {
           log('ERROR: Failed to fetch location, using Indian pricing:', error);
           window.REGROWTH_PRICING = PRICING.IN;
@@ -155,27 +156,6 @@
       
       function updatePricingInDOM(pricing) {
         log('Updating prices in DOM with:', pricing);
-        
-        // Find all pricing elements and update them
-        // Looking for patterns like ₹999, $79, etc.
-        const pricePatterns = [
-          { 
-            old: ['₹999', '₹ 999', '$79', '$ 79'], 
-            new: pricing.symbol + pricing.prices[0].toLocaleString() 
-          },
-          { 
-            old: ['₹1,499', '₹1499', '₹ 1,499', '$109', '$ 109'], 
-            new: pricing.symbol + pricing.prices[1].toLocaleString() 
-          },
-          { 
-            old: ['₹1,999', '₹1999', '₹ 1,999', '$139', '$ 139'], 
-            new: pricing.symbol + pricing.prices[2].toLocaleString() 
-          },
-          { 
-            old: ['₹2,999', '₹2999', '₹ 2,999', '$199', '$ 199'], 
-            new: pricing.symbol + pricing.prices[3].toLocaleString() 
-          }
-        ];
         
         // Update all text nodes
         const walker = document.createTreeWalker(
@@ -192,19 +172,43 @@
           const node = walker.currentNode;
           if (node.nodeValue && (node.nodeValue.includes('₹') || node.nodeValue.includes('$'))) {
             nodesToUpdate.push(node);
+            if (DEBUG) log('Found text node with price:', node.nodeValue.trim());
           }
         }
         
         log('Found', nodesToUpdate.length, 'text nodes with currency symbols');
         
+        // Define all possible price patterns to match
+        const priceMap = {
+          '999': pricing.symbol + pricing.prices[0].toLocaleString(),
+          '1499': pricing.symbol + pricing.prices[1].toLocaleString(),
+          '1,499': pricing.symbol + pricing.prices[1].toLocaleString(),
+          '1999': pricing.symbol + pricing.prices[2].toLocaleString(),
+          '1,999': pricing.symbol + pricing.prices[2].toLocaleString(),
+          '2999': pricing.symbol + pricing.prices[3].toLocaleString(),
+          '2,999': pricing.symbol + pricing.prices[3].toLocaleString(),
+          '79': pricing.symbol + pricing.prices[0].toLocaleString(),
+          '109': pricing.symbol + pricing.prices[1].toLocaleString(),
+          '139': pricing.symbol + pricing.prices[2].toLocaleString(),
+          '199': pricing.symbol + pricing.prices[3].toLocaleString()
+        };
+        
         nodesToUpdate.forEach(node => {
           let text = node.nodeValue;
           let originalText = text;
           
-          pricePatterns.forEach(pattern => {
-            pattern.old.forEach(oldPrice => {
-              if (text.includes(oldPrice)) {
-                text = text.replace(new RegExp(oldPrice.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), pattern.new);
+          // Try to match and replace any currency + number pattern
+          Object.keys(priceMap).forEach(price => {
+            // Match ₹999, ₹ 999, $79, $ 79, etc.
+            const patterns = [
+              new RegExp('₹\\s*' + price, 'g'),
+              new RegExp('\\$\\s*' + price, 'g')
+            ];
+            
+            patterns.forEach(pattern => {
+              if (pattern.test(text)) {
+                text = text.replace(pattern, priceMap[price]);
+                if (DEBUG) log('Replaced:', originalText.trim(), '→', text.trim());
               }
             });
           });
