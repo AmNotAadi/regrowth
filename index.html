@@ -9,44 +9,19 @@
     <meta name="description" content="Transform your business with professional web design. Affordable packages starting at ₹999." />
     
     <style>
-      /* Mobile styling - consistent dark theme regardless of device setting */
+      /* Mobile styling - consistent appearance regardless of device setting */
       @media (max-width: 768px) {
         :root {
           color-scheme: dark !important;
         }
         
         html, body {
-          background-color: #000000 !important;
-          color: #ffffff !important;
           filter: none !important;
         }
         
-        /* Force dark background and light text on all elements */
+        /* Force proper color scheme */
         * {
           color-scheme: dark !important;
-        }
-        
-        /* Override any light backgrounds */
-        section, div, header, nav, main, footer {
-          background-color: #000000 !important;
-        }
-        
-        /* Make all text white/light colored */
-        h1, h2, h3, h4, h5, h6, p, span, a, li, label {
-          color: #ffffff !important;
-          -webkit-text-fill-color: #ffffff !important;
-        }
-        
-        /* Purple glowy accents */
-        button, .btn, a[href*="mailto"], a[href*="tel"] {
-          background: linear-gradient(135deg, #8b5cf6, #a78bfa) !important;
-          color: #ffffff !important;
-          box-shadow: 0 0 20px rgba(139, 92, 246, 0.5) !important;
-        }
-        
-        /* Ensure cards/sections maintain dark theme */
-        [class*="card"], [class*="section"], [class*="container"] {
-          background-color: #000000 !important;
         }
       }
     </style>
@@ -169,7 +144,7 @@
       function updatePricingInDOM(pricing) {
         log('Updating prices in DOM with:', pricing);
         
-        // Find all elements containing price text by looking at innerHTML
+        // Find all elements that might contain pricing
         const allElements = document.querySelectorAll('*');
         let updateCount = 0;
         
@@ -181,25 +156,25 @@
         ];
         
         allElements.forEach(element => {
-          // Skip if element has no text or is a script/style tag
-          if (!element.textContent || element.tagName === 'SCRIPT' || element.tagName === 'STYLE') return;
+          // Skip if element has no innerHTML or is a script/style tag
+          if (!element.innerHTML || element.tagName === 'SCRIPT' || element.tagName === 'STYLE' || element.tagName === 'SVG') return;
           
-          // Only process leaf elements (elements with no child elements, only text)
-          if (element.children.length === 0 && (element.textContent.includes('₹') || element.textContent.includes('$'))) {
-            let originalText = element.textContent;
-            let newText = originalText;
+          // Check if element's innerHTML contains price symbols
+          if (element.innerHTML.includes('₹') || element.innerHTML.includes('$')) {
+            let originalHTML = element.innerHTML;
+            let newHTML = originalHTML;
             
             priceReplacements.forEach(replacement => {
               replacement.from.forEach(oldPrice => {
-                if (newText.includes(oldPrice)) {
-                  newText = newText.replace(new RegExp(oldPrice.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), replacement.to);
-                  if (DEBUG) log('Replacing in element:', oldPrice, '→', replacement.to);
+                if (newHTML.includes(oldPrice)) {
+                  newHTML = newHTML.replace(new RegExp(oldPrice.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), replacement.to);
+                  if (DEBUG) log('Replacing:', oldPrice, '→', replacement.to, 'in element:', element.tagName);
                 }
               });
             });
             
-            if (newText !== originalText) {
-              element.textContent = newText;
+            if (newHTML !== originalHTML) {
+              element.innerHTML = newHTML;
               updateCount++;
             }
           }
